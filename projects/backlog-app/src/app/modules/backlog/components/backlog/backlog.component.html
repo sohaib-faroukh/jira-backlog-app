@@ -1,0 +1,42 @@
+<!-- <section> -->
+<div class="container-fluid">
+	<div class="row fixed-top bg-body m-2 border border-2 shadow rounded align-items-center h5" style="height: 5rem;">
+		<mat-slide-toggle class="example-margin" [color]="'primary'" [checked]="backlogService.isToFetchFromJira$|async"
+			(change)="onFetchRemoteToggleChange()">
+			Remote from JIRA API
+		</mat-slide-toggle>
+
+	</div>
+</div>
+<!-- </section> -->
+
+<!-- <section> -->
+<div class="container-fluid" style="margin-top: 6rem;">
+	<ng-container *ngIf="(this.backlogService.isFetchingFromJira$|async)===false;else loadingRef">
+		<div #issuesContainerRef class="ps-3 issues-container m-auto row" *ngIf="issuesVM$|async as issues;else loadingRef">
+			<ng-container *ngFor="let label of allLabels;let index=index">
+				<div class="row my-2 label-issues-container cell-size p-0">
+					<div class="w-4rem align-items-center d-flex p-0 justify-content-center text-white">
+						<span class="label-name" style="white-space: nowrap;">{{label}}</span>
+					</div>
+					<div class="border-start col-11 row flex-nowrap " style="height: 100%;overflow-x: auto;">
+						<ng-container *ngFor="let issue of labelsIssues[index]||[];let j=index">
+							<app-issue-card class="mx-3 d-block issue-card" [classes]="['lazur-bg']" [data]="issue"
+								[style.width.px]="issue.width">
+							</app-issue-card>
+						</ng-container>
+
+					</div>
+				</div>
+			</ng-container>
+		</div>
+	</ng-container>
+</div>
+
+<!-- </section> -->
+
+<ng-template #loadingRef>
+	<div class="row text-black" style="height: 100vh;">
+		<app-spinner class="m-auto"></app-spinner>
+	</div>
+</ng-template>

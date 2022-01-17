@@ -1,0 +1,35 @@
+<div [ngClass]="classes||[]" class="lazur-bg sticky-note mx-1">
+
+	<small class="text-black-50">Due Date:&nbsp;
+		<span> {{data?.dueDate??''}}</span>
+	</small>
+
+	<div class="row">
+		<h4 class="pt-2">
+			<a [href]="data?.self??''" target="_blank">
+				{{data?.code??''}}
+			</a>
+			:&nbsp; {{data?.title??''}}
+		</h4>
+	</div>
+
+	<ng-container *ngIf="data?.fields?.timetracking?.originalEstimate">
+		<p>
+			<label for="estimation-id" class="text-black-50">Estimation:</label>
+			<span id="estimation-id" class="">
+				{{data?.fields?.timetracking?.originalEstimate??''}}
+			</span>
+		</p>
+	</ng-container>
+
+
+	<ng-container *ngIf="data?.fields?.description">
+		<div class="row">
+			<label for="description-id" class="text-black-50">Description:</label>
+			<p id="description-id">
+				{{data?.fields?.description??''}}
+			</p>
+		</div>
+	</ng-container>
+
+</div>

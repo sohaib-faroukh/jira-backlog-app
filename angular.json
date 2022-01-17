@@ -1,0 +1,143 @@
+{
+	"$schema": "./node_modules/@angular/cli/lib/config/schema.json",
+	"version": 1,
+	"newProjectRoot": "projects",
+	"projects": {
+		"backlog-app": {
+			"projectType": "application",
+			"schematics": {
+				"@schematics/angular:application": {
+					"strict": true
+				}
+			},
+			"root": "projects/backlog-app",
+			"sourceRoot": "projects/backlog-app/src",
+			"prefix": "app",
+			"architect": {
+				"build": {
+					"builder": "@angular-devkit/build-angular:browser",
+					"options": {
+						"outputPath": "dist/backlog-app",
+						"index": "projects/backlog-app/src/index.html",
+						"main": "projects/backlog-app/src/main.ts",
+						"polyfills": "projects/backlog-app/src/polyfills.ts",
+						"tsConfig": "projects/backlog-app/tsconfig.app.json",
+						"assets": [
+							"projects/backlog-app/src/favicon.ico",
+							"projects/backlog-app/src/assets"
+						],
+						"styles": [
+							"projects/backlog-app/src/custom-theme.scss",
+							"projects/backlog-app/src/styles.css",
+							"node_modules/bootstrap/dist/css/bootstrap.css",
+							"node_modules/font-awesome/css/font-awesome.css"
+						],
+						"scripts": [
+							"node_modules/jquery/dist/jquery.js",
+							"node_modules/bootstrap/dist/js/bootstrap.js"
+						]
+					},
+					"configurations": {
+						"production": {
+							"budgets": [
+								{
+									"type": "initial",
+									"maximumWarning": "3mb",
+									"maximumError": "5mb"
+								},
+								{
+									"type": "anyComponentStyle",
+									"maximumWarning": "120kb",
+									"maximumError": "140kb"
+								}
+							],
+							"fileReplacements": [
+								{
+									"replace": "projects/backlog-app/src/environments/environment.ts",
+									"with": "projects/backlog-app/src/environments/environment.prod.ts"
+								}
+							],
+							"outputHashing": "all"
+						},
+						"development": {
+							"buildOptimizer": false,
+							"optimization": false,
+							"vendorChunk": true,
+							"extractLicenses": false,
+							"sourceMap": true,
+							"namedChunks": true
+						}
+					},
+					"defaultConfiguration": "production"
+				},
+				"serve": {
+					"builder": "@angular-devkit/build-angular:dev-server",
+					"configurations": {
+						"production": {
+							"browserTarget": "backlog-app:build:production"
+						},
+						"development": {
+							"browserTarget": "backlog-app:build:development"
+						}
+					},
+					"defaultConfiguration": "development"
+				},
+				"extract-i18n": {
+					"builder": "@angular-devkit/build-angular:extract-i18n",
+					"options": {
+						"browserTarget": "backlog-app:build"
+					}
+				},
+				"test": {
+					"builder": "@angular-devkit/build-angular:karma",
+					"options": {
+						"main": "projects/backlog-app/src/test.ts",
+						"polyfills": "projects/backlog-app/src/polyfills.ts",
+						"tsConfig": "projects/backlog-app/tsconfig.spec.json",
+						"karmaConfig": "projects/backlog-app/karma.conf.js",
+						"assets": [
+							"projects/backlog-app/src/favicon.ico",
+							"projects/backlog-app/src/assets"
+						],
+						"styles": [
+							"projects/backlog-app/src/styles.css"
+						],
+						"scripts": []
+					}
+				}
+			}
+		},
+		"shared": {
+			"projectType": "library",
+			"root": "projects/shared",
+			"sourceRoot": "projects/shared/src",
+			"prefix": "lib",
+			"architect": {
+				"build": {
+					"builder": "@angular-devkit/build-angular:ng-packagr",
+					"options": {
+						"project": "projects/shared/ng-package.json"
+					},
+					"configurations": {
+						"production": {
+							"tsConfig": "projects/shared/tsconfig.lib.prod.json"
+						},
+						"development": {
+							"tsConfig": "projects/shared/tsconfig.lib.json"
+						}
+					},
+					"defaultConfiguration": "production"
+				},
+				"test": {
+					"builder": "@angular-devkit/build-angular:karma",
+					"options": {
+						"main": "projects/shared/src/test.ts",
+						"tsConfig": "projects/shared/tsconfig.spec.json",
+						"karmaConfig": "projects/shared/karma.conf.js"
+					}
+				}
+			}
+		}
+	},
+	"defaultProject": "backlog-app"
+}

@@ -1,0 +1,41 @@
+/* You can add global styles to this file, and also import other style files */
+:root {
+	--bs-body-bg: hsl(0, 0%, 95%);
+}
+
+html,
+body {
+	height: 100%;
+	font-size: 12px;
+}
+body {
+	margin: 0;
+	font-family: Roboto, "Helvetica Neue", sans-serif;
+	background-color: var(--bs-body-bg) !important;
+	margin: 0;
+	padding: 0;
+}
+body > * {
+	font-size: 1rem;
+}
+
+/* Scroll bar styling  */
+::-webkit-scrollbar {
+	width: 12px;
+	height: 12px;
+}
+::-webkit-scrollbar-track {
+	box-shadow: inset 0 0 4px grey;
+}
+
+::-webkit-scrollbar-thumb {
+	background: hsl(0, 2%, 40%);
+}
+
+::-webkit-scrollbar-thumb:hover {
+	background: hsl(0, 2%, 60%);
+}
+
+.c-bg-gray-95 {
+	background-color: hsl(0, 0%, 95%);
+}
