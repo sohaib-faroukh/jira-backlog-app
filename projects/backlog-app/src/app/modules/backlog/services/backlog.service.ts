@@ -18,11 +18,11 @@ interface IAccessTokenResponse {
 export class BacklogService extends BaseCrudService<Issue, HttpSearchOptions>{
 
 	private readonly JIRA_DOMAIN = 'https://pinguintest.atlassian.net';
-	private readonly JIRA_USERNAME = 'ILikePengus.R@gmail.com';
-	private readonly JIRA_API_TOKEN = 'hLIQvhojJBRbQZQfzEr487FE';
-	// private readonly JIRA_API_PASSWORD = 'LetsGetItDone';
-	private readonly CLIENT_ID = 'CKEyRKLYLvnhZh7AIqzjFskUM8QY18nj';
-	private readonly CLIENT_SECRET = 'Oxec0KYMddIPEXDMdR1RxUJ7T6ULSHVYtQ1hqvwLIGhZlB96auL44FvWeCFQk_1H';
+	private readonly JIRA_USERNAME = '';
+	private readonly JIRA_API_TOKEN = '';
+	// private readonly JIRA_API_PASSWORD = '';
+	private readonly CLIENT_ID = '';
+	private readonly CLIENT_SECRET = '';
 
 	private accessToken?: IAccessTokenResponse;
 	public isToFetchFromJira$ = new BehaviorSubject<boolean>( false );
